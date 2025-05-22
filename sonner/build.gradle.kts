@@ -5,7 +5,11 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeCompiler)
+    id("maven-publish")
 }
+
+group = "com.expense.app.sonner"
+version = "1.0.1"
 
 kotlin {
     /*@OptIn(ExperimentalWasmDsl::class)
@@ -39,7 +43,7 @@ kotlin {
     }*/
 
     androidTarget {
-        publishLibraryVariants("release")
+        publishLibraryVariants("release", "debug")
         compilations.all {
             kotlinOptions {
                 jvmTarget = "11"
@@ -104,3 +108,12 @@ tasks
             .jvmTarget
             .set(JvmTarget.JVM_11)
     }
+
+publishing {
+    repositories {
+        maven {
+            name = "SonnarRepo"
+            url = uri("${rootDir.absolutePath}/localMavenRepo")
+        }
+    }
+}
