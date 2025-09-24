@@ -9,12 +9,14 @@ plugins {
 }
 
 group = "com.expense.app.sonner"
-version = "1.0.1"
+version = "1.0.2"
 
 kotlin {
-    /*@OptIn(ExperimentalWasmDsl::class)
+    jvmToolchain(11)
+
+    @Suppress("OPT_IN_USAGE")
     wasmJs {
-        moduleName = "compose-sooner"
+        outputModuleName = "compose-sooner"
         browser {
             commonWebpackConfig {
                 outputFileName = "compose-sooner.js"
@@ -27,8 +29,9 @@ kotlin {
         }
         binaries.library()
     }
+
     js(IR) {
-        moduleName = "compose-sooner-jscanvas"
+        outputModuleName = "compose-sooner-jscanvas"
         browser {
             commonWebpackConfig {
                 outputFileName = "compose-sooner-jscanvas.js"
@@ -40,15 +43,15 @@ kotlin {
             }
         }
         binaries.library()
-    }*/
+    }
 
     androidTarget {
         publishLibraryVariants("release", "debug")
-        compilations.all {
+        /*compilations.all {
             kotlinOptions {
                 jvmTarget = "11"
             }
-        }
+        }*/
     }
 
     iosX64()
